@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    environment {
+        path = "/opt/maven/bin:$PATH"
+    }
+    stages {
+        stage('Cloning git') {
+            steps {
+                git url : 'https://github.com/asimshaukat12/simple-java-maven-app.git', branch : 'master'
+            }
+        }
+        stage('Running maven job') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+    }
+}
